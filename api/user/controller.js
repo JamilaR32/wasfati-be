@@ -23,6 +23,7 @@ const signUp = async (req, res, next) => {
     const token = generateToken(newuser);
     return res.status(201).json({ token: token });
   } catch (error) {
+    console.log("test");
     next(error);
   }
 };
