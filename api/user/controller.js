@@ -28,4 +28,15 @@ const signUp = async (req, res, next) => {
   }
 };
 
+const login = async (req, res, next) => {
+  try {
+    // const user = req.user;
+    const token = generateToken(req.user);
+    return res.status(200).json({ token });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { newUser, login };
 module.exports = signUp;
