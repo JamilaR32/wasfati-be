@@ -4,4 +4,4 @@ const { login } = require("./controller");
 const passport = require("passport");
 const router = express.Router();
 
-router.post("/", passport);
+router.post("/", passport.authenticate("local", { session: false }, login));
