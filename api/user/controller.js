@@ -9,4 +9,11 @@ const newUser = async (req, res, next) => {
   }
 };
 
-module.exports = newUser;
+const login = async (req, res, next) => {
+  try {
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { newUser, login };
