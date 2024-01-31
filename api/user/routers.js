@@ -1,6 +1,8 @@
 const express = require("express");
-const newUser = require("./controller");
+const signUp = require("./controller");
 
 const router = express.Router();
 
-router.post("/", newUser);
+router.post("/signup", signUp);
+
+module.exports = router;
