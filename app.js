@@ -1,12 +1,16 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const path = require("path");
 const morgan = require("morgan");
+const recipeRouter = require("./api/recipe/routers");
+const connectDB = require("./database");
 const userRouter = require("./api/user/routers");
 const categoryRouter = require("./api/category/routers");
 const passport = require("passport");
 const { localStrategy, jwtStrategy } = require("./middlewares/passport");
 const connectDB = require("./database");
+const localStrategy = require("./middlewares/passport");
 
 app.use(express.json());
 app.use(cors());
@@ -30,6 +34,9 @@ app.use((err, req, res, next) => {
     message: err.message || "Internal Server Error",
   });
 });
+app.use("/media", express.static(path.join(__dirname, "media")));
+app.use("/api/recipe", recipeRouter);
+app.use(userRouter);
 
 app.listen(PORT, () => {
   console.log("The application is running on localhost:8000");

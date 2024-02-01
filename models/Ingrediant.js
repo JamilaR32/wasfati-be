@@ -5,4 +5,5 @@ const IngSchema = new Schema({
   recipe: [{ type: Schema.Types.ObjectId, ref: "Recipe" }],
 });
 
+console.log("test");
 module.exports = model("Ingrediant", IngSchema);

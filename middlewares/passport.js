@@ -1,6 +1,6 @@
 const User = require("../models/User");
-const bcrypt = require("bcrypt");
 require("dotenv").config();
+const bcrypt = require("bcryptjs");
 const LocalStrategy = require("passport-local").Strategy;
 const JWTStrategy = require("passport-jwt").Strategy;
 const { fromAuthHeaderAsBearerToken } = require("passport-jwt").ExtractJwt;
