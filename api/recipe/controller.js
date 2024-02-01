@@ -12,7 +12,7 @@ const getAllRecipes = async (req, res, next) => {
 const createRecipe = async (req, res, next) => {
   try {
     if (req.file) {
-      req.body.image = req.file.path;
+      req.body.image = req.file.path.replace("\\", "/");
     }
     const recipe = await Recipe.create(req.body);
     return res.status(201).json(recipe);
