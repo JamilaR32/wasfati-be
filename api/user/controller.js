@@ -38,5 +38,4 @@ const login = async (req, res, next) => {
   }
 };
 
-module.exports = { newUser, login };
-module.exports = signUp;
+module.exports = { signUp, login };
