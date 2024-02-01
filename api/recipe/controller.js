@@ -19,5 +19,22 @@ const createRecipe = async (req, res, next) => {
     next(error);
   }
 };
-
-module.exports = { getAllRecipes, createRecipe };
+const editRecipe = async (req, res, next) => {
+  try {
+    const { recipeId } = req.params;
+    await Recipe.findByIdAndUpdate(recipeId, req.body);
+    return res.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+};
+const deleteRecipe = async (req, res, next) => {
+  try {
+    const { recipeId } = req.params;
+    await Recipe.findByIdAndDelete(recipeId, req.body);
+    return res.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+};
+module.exports = { getAllRecipes, createRecipe, editRecipe, deleteRecipe };
