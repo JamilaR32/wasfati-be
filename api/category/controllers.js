@@ -31,4 +31,19 @@ const editCategory = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllCategories, createCateqories, editCategory };
+const deletCategory = async (req, res, next) => {
+  try {
+    const { categoryId } = req.params;
+    await Category.findByIdAndDelete(categoryId, req.body);
+    return res.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  getAllCategories,
+  createCateqories,
+  editCategory,
+  deletCategory,
+};
