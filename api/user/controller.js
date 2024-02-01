@@ -1,6 +1,8 @@
 const User = require("../../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Category = require("../../models/Category");
+const { json } = require("express");
 
 const hashingPass = async (password) => {
   const hashedPass = await bcrypt.hash(password, 10);
@@ -37,19 +39,13 @@ const login = async (req, res, next) => {
     next(error);
   }
 };
-
-const getCategories = async () => {
+const getAllUsers = async (req, res, next) => {
   try {
+    const user = await User.find();
+    return res.status(200).json(user);
   } catch (error) {
     next(error);
   }
 };
 
-const createCateqories = async (req, res, next) => {
-  try {
-  } catch (error) {
-    next(error);
-  }
-};
-
-module.exports = { signUp, login, getCategories, createCateqories };
+module.exports = { signUp, login, getAllUsers };

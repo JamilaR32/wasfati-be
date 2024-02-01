@@ -1,11 +1,6 @@
 const express = require("express");
 const User = require("../../models/User");
-const {
-  login,
-  signUp,
-  getCategories,
-  createCateqories,
-} = require("./controller");
+const { login, signUp, getAllUsers } = require("./controller");
 const passport = require("passport");
 const router = express.Router();
 
@@ -16,8 +11,6 @@ router.post(
 );
 
 router.post("/signup", signUp);
+router.get("/users", getAllUsers);
 
-//category
-router.get("/", getCategories);
-router.post("/", createCateqories);
 module.exports = router;

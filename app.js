@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
 const userRouter = require("./api/user/routers");
+const categoryRouter = require("./api/category/routers");
 const passport = require("passport");
 const { localStrategy, jwtStrategy } = require("./middlewares/passport");
 const connectDB = require("./database");
@@ -17,9 +18,9 @@ passport.use("jwt", jwtStrategy);
 
 const PORT = 8000;
 connectDB();
-
+//my routes
 app.use("/users", userRouter);
-
+app.use("/category", categoryRouter);
 app.use((req, res, next) => {
   res.status(404).json({ message: "Path not found" });
 });
