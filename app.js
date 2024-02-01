@@ -9,8 +9,6 @@ const userRouter = require("./api/user/routers");
 const categoryRouter = require("./api/category/routers");
 const passport = require("passport");
 const { localStrategy, jwtStrategy } = require("./middlewares/passport");
-const connectDB = require("./database");
-const localStrategy = require("./middlewares/passport");
 
 app.use(express.json());
 app.use(cors());
