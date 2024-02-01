@@ -3,6 +3,7 @@ const {
   getAllCategories,
   createCateqories,
   editCategory,
+  deletCategory,
 } = require("./controllers");
 const router = express.Router();
 const passport = require("passport");
@@ -14,4 +15,5 @@ router.post(
   createCateqories
 );
 router.put("/:categoryId", editCategory);
+router.delete("/:categoryId", deletCategory);
 module.exports = router;
