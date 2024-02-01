@@ -38,4 +38,18 @@ const login = async (req, res, next) => {
   }
 };
 
-module.exports = { signUp, login };
+const getCategories = async () => {
+  try {
+  } catch (error) {
+    next(error);
+  }
+};
+
+const createCateqories = async (req, res, next) => {
+  try {
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { signUp, login, getCategories, createCateqories };
