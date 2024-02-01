@@ -3,15 +3,23 @@ const app = express();
 const cors = require("cors");
 const path = require("path");
 const morgan = require("morgan");
+const recipeRouter = require("./api/recipe/routers");
+const connectDB = require("./database");
+const userRouter = require("./api/user/routers");
+const passport = require("passport");
+const localStrategy = require("./middlewares/passport");
+
+
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
-app.use("/media", express.static(path.join(__dirname, "media")));
 
-const recipeRouter = require("./api/recipe/routers");
-//day3
+app.use(passport.initialize());
+passport.use("local", localStrategy);
+app.use("/media", express.static(path.join(__dirname, "media")));
 app.use("/api/recipe", recipeRouter);
-const connectDB = require("./database");
+app.use( userRouter);
+
 const PORT = 8000;
 connectDB();
 
