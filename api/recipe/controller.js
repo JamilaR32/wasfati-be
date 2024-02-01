@@ -1,9 +1,10 @@
+const Ingrediant = require("../../models/Ingrediant");
 const Recipe = require("../../models/Recipe");
 
 const getAllRecipes = async (req, res, next) => {
   try {
     const allRecipe = await Recipe.find();
-    return res.status(201).json(allRecipe);
+    return res.status(200).json(allRecipe);
   } catch (error) {
     next(error);
   }
