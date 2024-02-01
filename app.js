@@ -9,7 +9,6 @@ const userRouter = require("./api/user/routers");
 const passport = require("passport");
 const localStrategy = require("./middlewares/passport");
 
-
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
@@ -18,7 +17,7 @@ app.use(passport.initialize());
 passport.use("local", localStrategy);
 app.use("/media", express.static(path.join(__dirname, "media")));
 app.use("/api/recipe", recipeRouter);
-app.use( userRouter);
+app.use(userRouter);
 
 const PORT = 8000;
 connectDB();
