@@ -8,13 +8,6 @@ const getAllRecipes = async (req, res, next) => {
     next(error);
   }
 };
-const getRecipeByID = async (req, res, next) => {
-  try {
-    return res.status(201).json(req.Recipe);
-  } catch (error) {
-    next(error);
-  }
-};
 const createRecipe = async (req, res, next) => {
   try {
     if (req.file) {
@@ -26,9 +19,6 @@ const createRecipe = async (req, res, next) => {
     next(error);
   }
 };
-
-
-module.exports = { getAllRecipes, createRecipe, getRecipeByID };
 const editRecipe = async (req, res, next) => {
   try {
     const { recipeId } = req.params;
@@ -48,4 +38,3 @@ const deleteRecipe = async (req, res, next) => {
   }
 };
 module.exports = { getAllRecipes, createRecipe, editRecipe, deleteRecipe };
-
