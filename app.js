@@ -23,5 +23,5 @@ const PORT = 8000;
 connectDB();
 
 app.listen(PORT, () => {
-  console.log("The application is running on localhost:8000");
+  console.log(`The application is running on localhost${PORT}`);
 });

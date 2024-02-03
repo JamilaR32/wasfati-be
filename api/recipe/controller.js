@@ -8,6 +8,13 @@ const getAllRecipes = async (req, res, next) => {
     next(error);
   }
 };
+const getRecipeByID = async (req, res, next) => {
+  try {
+    return res.status(201).json(req.Recipe);
+  } catch (error) {
+    next(error);
+  }
+};
 const createRecipe = async (req, res, next) => {
   try {
     if (req.file) {
@@ -20,4 +27,4 @@ const createRecipe = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllRecipes, createRecipe };
+module.exports = { getAllRecipes, createRecipe, getRecipeByID };
