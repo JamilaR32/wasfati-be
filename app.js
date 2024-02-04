@@ -16,9 +16,15 @@ app.use(morgan("dev"));
 
 app.use(passport.initialize());
 passport.use("local", localStrategy);
+
+app.use("/media", express.static(path.join(__dirname, "media")));
+app.use("/recipe", recipeRouter);
+app.use(userRouter);
+
 passport.use("jwt", jwtStrategy);
 
-const PORT = 8000;
+
+const PORT = 8001;
 connectDB();
 //my routes
 app.use("/users", userRouter);
