@@ -14,7 +14,7 @@ const createCateqories = async (req, res, next) => {
   try {
     req.body.user = req.user._id;
     const category = await Category.create(req.body);
-    await req.user.updateOne({ $push: { category: category.id } });
+    await req.user.updateOne({ $push: { category: rec._id } });
     return res.status(201).json(category);
   } catch (error) {
     next(error);
