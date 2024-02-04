@@ -7,9 +7,12 @@ const {
   createRecipe,
   editRecipe,
   deleteRecipe,
+  getRecipeById,
 } = require("./controller");
 
 router.get("/", getAllRecipes);
+router.get("/:recipeId", getRecipeById);
+
 router.post("/", upload.single("image"), createRecipe);
 router.put("/:recipeId", editRecipe);
 router.delete("/:recipeId", deleteRecipe);

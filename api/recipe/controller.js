@@ -37,4 +37,19 @@ const deleteRecipe = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = { getAllRecipes, createRecipe, editRecipe, deleteRecipe };
+const getRecipeById = async (req, res, next) => {
+  try {
+    const { recipeId } = req.params;
+    const recipe = await Recipe.findById(recipeId);
+    return res.status(200).json(recipe);
+  } catch (error) {
+    next(error);
+  }
+};
+module.exports = {
+  getAllRecipes,
+  createRecipe,
+  editRecipe,
+  deleteRecipe,
+  getRecipeById,
+};
