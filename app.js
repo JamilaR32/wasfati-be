@@ -23,8 +23,7 @@ app.use(userRouter);
 
 passport.use("jwt", jwtStrategy);
 
-
-const PORT = 8001;
+const PORT = 8000;
 connectDB();
 //my routes
 app.use("/users", userRouter);
@@ -44,5 +43,5 @@ app.use("/media", express.static(path.join(__dirname, "media")));
 app.use(userRouter);
 
 app.listen(PORT, () => {
-  console.log("The application is running on localhost:8000");
+  console.log(`The application is running on localhost:${PORT}`);
 });
