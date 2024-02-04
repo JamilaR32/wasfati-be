@@ -16,10 +16,10 @@ app.use(morgan("dev"));
 app.use(passport.initialize());
 passport.use("local", localStrategy);
 app.use("/media", express.static(path.join(__dirname, "media")));
-app.use("/api/recipe", recipeRouter);
+app.use("/recipe", recipeRouter);
 app.use(userRouter);
 
-const PORT = 8000;
+const PORT = 8001;
 connectDB();
 
 app.listen(PORT, () => {
