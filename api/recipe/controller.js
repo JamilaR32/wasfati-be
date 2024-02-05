@@ -14,6 +14,11 @@ const createRecipe = async (req, res, next) => {
       req.body.image = req.file.path.replace("\\", "/");
     }
     const recipe = await Recipe.create(req.body);
+
+    // update the category to incluse this recipe in it
+
+    // update the ingredients to unclude this recipe
+
     return res.status(201).json(recipe);
   } catch (error) {
     next(error);
