@@ -11,11 +11,13 @@ router.post(
 );
 
 router.post("/signup", signUp);
+
 router.get("/users", getAllUsers);
 router.get(
   "/me",
   passport.authenticate("jwt", { session: false }),
   getMyProfile
 );
+
 
 module.exports = router;
