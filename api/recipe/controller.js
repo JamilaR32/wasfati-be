@@ -10,6 +10,7 @@ const getAllRecipes = async (req, res, next) => {
 };
 const createRecipe = async (req, res, next) => {
   try {
+    req.body.user = req.user._id;
     if (req.file) {
       req.body.image = req.file.path.replace("\\", "/");
     }
@@ -22,8 +23,14 @@ const createRecipe = async (req, res, next) => {
 const editRecipe = async (req, res, next) => {
   try {
     const { recipeId } = req.params;
-    await Recipe.findByIdAndUpdate(recipeId, req.body);
-    return res.status(204).end();
+    const recipe = await Recipe.findById(recipeId);
+
+    if (recipe.user.equals(req.user._id)) {
+      await recipe.updateOne(req.body);
+      return res.status(204).end();
+    } else {
+      return res.status(401).json({ message: "You are not the recipe owner!" });
+    }
   } catch (error) {
     next(error);
   }
@@ -31,8 +38,16 @@ const editRecipe = async (req, res, next) => {
 const deleteRecipe = async (req, res, next) => {
   try {
     const { recipeId } = req.params;
-    await Recipe.findByIdAndDelete(recipeId, req.body);
-    return res.status(204).end();
+    const recipe = await Recipe.findById(recipeId);
+
+    if (!recipe) return res.status(404).json({ message: "recipe not found" });
+
+    if (recipe.user.equals(req.user._id)) {
+      await recipe.deleteOne();
+      return res.status(204).end();
+    } else {
+      return res.status(401).json({ message: "You are not the recipe owner!" });
+    }
   } catch (error) {
     next(error);
   }
