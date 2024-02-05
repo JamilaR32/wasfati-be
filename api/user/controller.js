@@ -48,5 +48,12 @@ const getAllUsers = async (req, res, next) => {
     next(error);
   }
 };
+const getMyProfile = async (req, res, next) => {
+  try {
+    return res.status(200).json({ username: req.user.username });
+  } catch (error) {
+    next(error);
+  }
+};
 
-module.exports = { signUp, login, getAllUsers };
+module.exports = { signUp, login, getAllUsers, getMyProfile };
