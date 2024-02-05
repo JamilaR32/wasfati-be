@@ -41,8 +41,9 @@ const login = async (req, res, next) => {
 };
 const getAllUsers = async (req, res, next) => {
   try {
-    const user = await User.find();
-    return res.status(200).json(user);
+    const users = await User.find().populate("username");
+
+    return res.status(200).json("all users fetched");
   } catch (error) {
     next(error);
   }
