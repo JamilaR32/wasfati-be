@@ -2,7 +2,7 @@ const Ingrediant = require("../../models/Ingrediant");
 
 const getAllIngrediants = async (req, res, next) => {
   try {
-    const ingrediants = await Ingrediant.find();
+    const ingrediants = await Ingrediant.find().populate("recipe");
     return res.status(200).json(ingrediants);
   } catch (error) {
     next(error);
